@@ -12,14 +12,44 @@
 //   }
 // }
 
+/* typescript user like most this way: */
+// class User {
+//   constructor(
+//     public email: string,
+//     public name: string,
+//     // private userId: string
+//   ) {}
+// }
 
-// typescript user like most this way:
+/* Getters and Setters */
 class User {
+  private _courseCount = 1;
+
   constructor(
     public email: string,
-    public name: string,
-    // private userId: string
+    public name: string // private userId: string
   ) {}
+
+  private deleteToken() {
+    console.log("Token Deleted");
+  }
+
+  // Getters: getters are used to get the value of a private variable, they return the value of the private variable
+  get getAppleEmail(): string {
+    return `apple${this.email}`;
+  }
+
+  get courseCount(): number {
+    return this._courseCount;
+  }
+
+  // Setters: setters are used to set the value of a private variable, they don't return anything
+  set courseCount(courseNum) {
+    if (courseNum <= 1) {
+      throw new Error("Course count should be more than 1");
+    }
+    this._courseCount = courseNum;
+  }
 }
 
 const hitesh = new User("h@h.com", "hitesh");
