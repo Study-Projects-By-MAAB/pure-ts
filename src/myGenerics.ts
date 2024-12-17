@@ -12,7 +12,7 @@ function identityTwo(val: any): any {
   return val;
 }
 
-// Generic Type - Preserves type information, 
+// Generic Type - Preserves type information,
 function identityThree<Type>(val: Type): Type {
   return val;
 }
@@ -32,3 +32,16 @@ interface Bootle {
 
 // Using Generic with Interface
 identityFour<Bootle>({ brand: "string", type: 1 });
+
+// Generic Array and function
+function getSearchProducts<T>(products: T[]): T {
+  // do some database operation
+  const myProduct = 10;
+  return products[myProduct];
+}
+
+const getMoreSearchProducts = <T>(products: T[]): T => {// comma is for show that it's a generic.
+  // do some database operation
+  const myProduct = 2;
+  return products[2];
+};
