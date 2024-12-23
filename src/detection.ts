@@ -28,3 +28,25 @@ function printAll(strs: string | string[] | null) {
     }
   }
 }
+
+// the in operator narrowing
+
+// The 'in' operator helps check if a property exists in an object
+// This helps narrow down object types based on their unique properties
+interface User {
+  name: string;
+  email: string;
+}
+
+interface Admin {
+  name: string;
+  email: string;
+  isAdmin: boolean;
+}
+
+function isAdminAccount(account: User | Admin) {
+  if ("isAdmin" in account) {
+    return account.isAdmin;
+  }
+  return false;
+}
