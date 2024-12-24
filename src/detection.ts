@@ -77,3 +77,49 @@ function getFood(pet: Fish | Bird) {
     return "bird food";
   }
 }
+
+// Discriminated unions - Using a common property (like 'kind') to narrow down types
+// This is also known as tagged unions or algebraic data types
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  side: number;
+}
+
+interface Rectangle {
+  kind: "rectangle";
+  length: number;
+  width: number;
+}
+
+// Union type combining all possible shapes
+type Shape = Circle | Square | Rectangle;
+
+// Example of type narrowing using the 'kind' property
+function getTrueShape(shape: Shape) {
+  if (shape.kind === "circle") {
+    return Math.PI * shape.radius ** 2;
+  }
+  // return shape.side * shape.side;
+}
+
+// Exhaustive type checking with switch statement
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius ** 2;
+    case "square":
+      return shape.side * shape.side;
+    case "rectangle":
+      return shape.length * shape.width;
+    default:
+      // this is a type guard, it ensures that the shape variable is of type Shape
+      // The never type is used to ensure all cases are handled
+      const _defaultforshape: never = shape;
+      return _defaultforshape;
+  }
+}
