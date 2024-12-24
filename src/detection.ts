@@ -50,3 +50,30 @@ function isAdminAccount(account: User | Admin) {
   }
   return false;
 }
+
+// instanceof narrowing, it is used to check if an object is an instance of a specific class or constructor function.
+function logValue(x: Date | string) {
+  if (x instanceof Date) {
+    console.log(x.toUTCString());
+  } else {
+    console.log(x.toUpperCase());
+  }
+}
+
+// Type Predicates - A type predicate is a function that returns a boolean value indicating whether a given value satisfies a specific condition.
+type Fish = { swim: () => void };
+type Bird = { fly: () => void };
+function isFish(pet: Fish | Bird): pet is Fish {
+  // pet is Fish is a type predicate
+  return (pet as Fish).swim !== undefined;
+}
+
+function getFood(pet: Fish | Bird) {
+  if (isFish(pet)) {
+    pet;
+    return "fish food";
+  } else {
+    pet;
+    return "bird food";
+  }
+}
